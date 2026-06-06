@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Track 04 · AI — Thomas J. Sherlock</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+Cuneiform&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ===== Track 04 · AI — embedded live specimens ===== */
+
+  .demo-fig {
+    margin: 32px 0 8px;
+    border: 1px solid var(--gold);
+    background: rgba(255,255,255,0.45);
+  }
+  .demo-fig .demo-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+  }
+  .demo-fig .demo-head .live {
+    color: var(--oxblood);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .demo-fig .demo-head .live::before {
+    content: "";
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--oxblood);
+    box-shadow: 0 0 0 3px rgba(128,0,0,0.18);
+    animation: demoPulse 1.8s ease-in-out infinite;
+  }
+  @keyframes demoPulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+  .demo-fig .demo-stage { padding: 22px 20px 24px; }
+  .demo-fig figcaption {
+    padding: 12px 20px 14px;
+    border-top: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    line-height: 1.6;
+  }
+  .demo-fig figcaption .hl { color: var(--oxblood); }
+
+  /* ---------- 04.1 · NAM.LU.DIN keg lifecycle ---------- */
+  .nam {
+    --st-empty:#B3362B; --st-sanitized:#2E6FB7; --st-filled:#2E7D43;
+    --st-reserved:#C8932B; --st-sold:#6B3FA0; --st-delivered:#1F3A5F;
+  }
+  .nam-keg {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 16px;
+    background: #FFFDF8;
+    border: 1px solid var(--rule);
+    border-left: 5px solid var(--sc, var(--st-empty));
+    border-radius: 4px;
+  }
+  .nam-glyph {
+    width: 44px; height: 44px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 8px;
+    font-family: 'Noto Sans Cuneiform','Segoe UI Historic', serif;
+    font-size: 22px;
+    color: var(--sc, var(--st-empty));
+    background: color-mix(in srgb, var(--sc, var(--st-empty)) 12%, white);
+    border: 1px solid color-mix(in srgb, var(--sc, var(--st-empty)) 30%, white);
+  }
+  .nam-keg .id {
+    flex: 1; min-width: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; font-weight: 500; color: var(--ink);
+  }
+  .nam-keg .id small {
+    display: block; margin-top: 3px;
+    font-size: 10.5px; color: var(--ink-soft); letter-spacing: 0.04em;
+  }
+  .nam-pill {
+    flex-shrink: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: #fff; background: var(--sc, var(--st-empty));
+    padding: 5px 11px; border-radius: 999px;
+  }
+
+  .nam-ladder {
+    display: flex; align-items: center;
+    margin: 20px 0 4px; padding: 0 2px;
+  }
+  .nam-node { display: flex; flex-direction: column; align-items: center; gap: 7px; }
+  .nam-node .dot {
+    width: 15px; height: 15px; border-radius: 50%;
+    background: #fff; border: 2px solid var(--rule-strong);
+    transition: all .25s ease;
+  }
+  .nam-node.done .dot { background: var(--nc); border-color: var(--nc); }
+  .nam-node.now .dot {
+    background: var(--nc); border-color: var(--nc);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--nc) 22%, transparent);
+    transform: scale(1.25);
+  }
+  .nam-node .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-soft); white-space: nowrap;
+  }
+  .nam-node.now .lbl { color: var(--nc); font-weight: 600; }
+  .nam-seg { flex: 1; height: 2px; background: var(--rule-strong); margin: 0 2px; margin-bottom: 19px; transition: background .25s; }
+  .nam-seg.done { background: var(--st-filled); }
+
+  .nam-actions { display: flex; flex-wrap: wrap; gap: 9px; margin: 20px 0 4px; }
+  .nam-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.08em; font-weight: 500;
+    padding: 10px 16px; border-radius: 999px; cursor: pointer;
+    border: 1px solid var(--brn, var(--st-delivered));
+    background: var(--brn, var(--st-delivered)); color: #FAF6EC;
+    transition: transform .14s ease, opacity .14s;
+  }
+  .nam-btn:hover { transform: translateY(-1px); }
+  .nam-btn.ghost {
+    background: transparent; color: var(--ink-soft);
+    border: 1px dashed var(--rule-strong);
+  }
+  .nam-btn.ghost:hover { border-color: var(--st-empty); color: var(--st-empty); }
+
+  .nam-log {
+    margin-top: 18px; border-top: 1px solid var(--rule); padding-top: 12px;
+    max-height: 132px; overflow-y: auto;
+  }
+  .nam-log .lh {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-soft); margin-bottom: 8px;
+  }
+  .nam-log .row {
+    display: flex; gap: 10px; align-items: baseline;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    padding: 5px 0; color: var(--ink);
+    border-top: 1px dotted var(--rule);
+  }
+  .nam-log .row:first-of-type { border-top: none; }
+  .nam-log .row.reject { color: var(--st-empty); }
+  .nam-log .row .t { color: var(--ink-soft); flex-shrink: 0; }
+  .nam-log .row .arrow { color: var(--gold); padding: 0 2px; }
+
+  /* ---------- 04.2 · The Mighty Queue — faithful to the live React app ---------- */
+  .mq {
+    /* Priority colours, id 1 = most urgent (from theme.css) */
+    --p1:#B02A5B; --p2:#C05A3A; --p3:#BFA23A;
+    --p4:#8EC5FF; --p5:#608AF0; --p6:#94BFA3;
+    /* Tier accents — 1 Slate, 2 Stack, 3 Seed */
+    --tier-slate:#6f42c1; --tier-stack:#2F5BD3; --tier-seed:#198754;
+    /* the real UI is a light Bootstrap surface — render it on white inside the parchment frame */
+    background: #fff;
+    color: #212529;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 14px;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  .mq-bar {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 14px;
+    font-size: 12.5px; color: #6c757d;
+  }
+  .mq-bar select {
+    font-family: inherit; font-size: 12.5px; padding: 4px 8px;
+    border: 1px solid #ced4da; border-radius: 4px; background: #fff; color: #212529;
+  }
+  .mq-bar .dir {
+    border: 1px solid #ced4da; background: #fff; border-radius: 4px;
+    width: 30px; height: 28px; cursor: default; color: #495057; font-size: 14px;
+  }
+  .mq-bar .spacer { flex: 1; }
+  .mq-bar .new {
+    background: var(--mq-accent, #0d6efd); color: #fff; border: none; border-radius: 5px;
+    font-family: inherit; font-size: 12.5px; font-weight: 500; padding: 6px 13px; cursor: default;
+  }
+
+  .mq-tier {
+    background: #fff; border: 1px solid #dee2e6; border-radius: 7px;
+    margin-bottom: 12px; overflow: hidden;
+  }
+  .mq-tier:last-of-type { margin-bottom: 0; }
+  .mq-tier.t1 { border-left: 4px solid var(--tier-slate); }
+  .mq-tier.t2 { border-left: 4px solid var(--tier-stack); }
+  .mq-tier.t3 { border-left: 4px solid var(--tier-seed); }
+  .mq-thead {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 11px 14px; cursor: pointer; background: #f8f9fa;
+    transition: background .15s;
+  }
+  .mq-thead:hover { background: #f1f3f5; }
+  .mq-thead h4 {
+    margin: 0; font-size: 16px; font-weight: 600; color: #212529;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .mq-thead .caret { font-size: 11px; color: #6c757d; transition: transform .2s; display: inline-block; }
+  .mq-tier.open .mq-thead .caret { transform: rotate(90deg); }
+  .mq-thead .cnt {
+    font-size: 11px; font-weight: 500; color: #fff; background: #6c757d;
+    padding: 3px 10px; border-radius: 999px; white-space: nowrap;
+  }
+  .mq-tbody { padding: 10px; display: none; }
+  .mq-tier.open .mq-tbody { display: block; }
+  .mq-empty { text-align: center; color: #adb5bd; font-size: 13px; padding: 16px 0; }
+
+  .mq-card {
+    display: block; width: 100%; text-align: left; cursor: pointer;
+    background: #fff; border: 1px solid #dee2e6; border-radius: 6px;
+    border-left: 4px solid var(--pc, #ced4da);
+    padding: 10px 12px; margin-bottom: 8px;
+    transition: transform .15s ease, box-shadow .15s;
+  }
+  .mq-card:last-child { margin-bottom: 0; }
+  .mq-card:hover { transform: translateX(-4px); box-shadow: 0 2px 10px -5px rgba(0,0,0,.35); }
+  .mq-card .top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+  .mq-card .ttl { font-size: 14px; font-weight: 600; color: #212529; line-height: 1.3; }
+  .mq-badge {
+    flex-shrink: 0; font-size: 10.5px; font-weight: 600;
+    padding: 3px 10px; border-radius: 999px;
+    background: var(--pc, #6c757d); color: var(--ptxt, #fff); white-space: nowrap;
+  }
+  .mq-card .meta {
+    margin-top: 6px; font-size: 11.5px; color: #6c757d;
+    display: flex; gap: 9px; align-items: center; flex-wrap: wrap;
+  }
+  .mq-card .meta code { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #868e96; }
+  .mq-card .note { margin: 7px 0 0; font-size: 11.5px; color: #6c757d; font-style: italic; line-height: 1.4; }
+  .mq-card .over {
+    display: inline-block; margin-top: 7px; font-size: 10px; font-weight: 600;
+    background: #dc3545; color: #fff; padding: 2px 8px; border-radius: 4px;
+  }
+  .mq-card .details {
+    display: inline-block; margin-top: 9px; font-size: 11px; color: #495057;
+    border: 1px solid #ced4da; border-radius: 4px; padding: 3px 11px;
+  }
+  .mq-hint {
+    margin-top: 14px; font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px; letter-spacing: 0.06em; color: var(--ink-soft);
+  }
+  .mq-hint b { color: var(--oxblood); font-weight: 600; }
+
+  @media (max-width: 560px) {
+    .nam-node .lbl { font-size: 7px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="site-nav"></div>
+<script src="nav.js"></script>
+
+<section class="page-hero" data-screen-label="01 Page Hero · AI">
+  <div class="crumbs">
+    <a href="index.html">Curriculum</a>
+    <span class="sep">/</span>
+    <span>Track 04 · The Orchestrator</span>
+  </div>
+  <span class="uppertrack ox">Track 04 // The Orchestrator</span>
+  <h1><span class="em">NAM.LU.DIN</span> — Augmented Systems.</h1>
+  <p class="deck">Agentic orchestration with Claude, Gemini, and Copilot. Two specimens of AI-built software you can drive right here on the page — a brewery oversight system and a priority queue — synthesised from intent into machine-enforced state.</p>
+</section>
+
+<div class="page-body" data-screen-label="02 Body · AI">
+
+  <aside class="toc">
+    <h5>§ Specimens</h5>
+    <ul>
+      <li><a href="#m1">04.1 · NAM.LU.DIN — Brewery OS</a></li>
+      <li><a href="#m2">04.2 · The Mighty Queue</a></li>
+    </ul>
+  </aside>
+
+  <article class="content">
+
+    <!-- ===================== 04.1 ===================== -->
+    <section id="m1" class="reveal">
+      <span class="uppertrack">Module 04.1</span>
+      <h2><span class="num">04.1</span>NAM.LU.DIN — The Brewery Oversight System</h2>
+      <p>An AI-built oversight system for the <b>Grain → Glass</b> mission of a craft brewery. Each keg is governed by a rigid state machine: a keg cannot skip from <i>Sanitized</i> to <i>Delivered</i>, and every transition is written to an immutable audit trail. The architecture pairs a Go backend with a Flutter client and a multi-tenant <i>"Digital Cellar"</i> — database-per-tenant isolation — while a layer of synthesised Sumerian nomenclature turns inventory into a <i>Digital Scriptorium</i>.</p>
+
+      <figure class="demo-fig nam" aria-label="Interactive demonstration of the NAM.LU.DIN keg lifecycle state machine">
+        <div class="demo-head">
+          <span>Live Specimen · Keg Lifecycle</span>
+          <span class="live">Interactive</span>
+        </div>
+        <div class="demo-stage">
+          <div class="nam-keg" id="namKeg">
+            <div class="nam-glyph" id="namGlyph">𒁹</div>
+            <div class="id">KEG-001<small id="namSub">½ BBL · 15.5 gal · Main Brewery</small></div>
+            <div class="nam-pill" id="namPill">EMPTY</div>
+          </div>
+
+          <div class="nam-ladder" id="namLadder"></div>
+
+          <div class="nam-actions" id="namActions"></div>
+
+          <div class="nam-log">
+            <div class="lh">Audit Trail · keg_history</div>
+            <div id="namLog"></div>
+          </div>
+        </div>
+        <figcaption>Fig. 04.1 · Advance the keg through its <span class="hl">enforced</span> lifecycle. Skipping a state is rejected — exactly as the Go API returns <span class="hl">HTTP 400</span>.</figcaption>
+      </figure>
+
+      <ul>
+        <li><b>Stewardship (AGRIG).</b> The state machine holds institutional precision across the full Grain-to-Glass mission.</li>
+        <li><b>Digital Cellars.</b> Database-per-tenant isolation for high-security multi-tenancy across craft breweries.</li>
+        <li><b>Cuneiform Synthesis.</b> Ancient Sumerian nomenclature fused with a modern Go + Flutter stack.</li>
+      </ul>
+      <div class="module-tags">
+        <span class="tag ox">NAM.LU.DIN</span>
+        <span class="tag">Go + Flutter</span>
+        <span class="tag">State Machine</span>
+        <span class="tag">Multi-tenant</span>
+        <span class="tag">QR Lifecycle</span>
+      </div>
+    </section>
+
+    <!-- ===================== 04.2 ===================== -->
+    <section id="m2" class="reveal">
+      <span class="uppertrack">Module 04.2</span>
+      <h2><span class="num">04.2</span>The Mighty Queue — Priority Orchestration</h2>
+      <p>A task system built to kill decision fatigue by separating two axes that most tools conflate. <b>Tier</b> answers <i>where</i> a task lives — <i>Slate</i> (work-ready), <i>Stack</i> (queued), <i>Seed</i> (someday). <b>Priority</b> answers <i>how urgent</i> on a strict six-level ladder, from <i>Urgent</i> down to <i>Interesting</i>. Underneath, retry-resilient Google Apps Script logic uses AI-assisted debugging to survive sync delays and JSON parsing failures in shared environments.</p>
+
+      <figure class="demo-fig" aria-label="Interactive demonstration of the Mighty Queue dual-axis priority board">
+        <div class="demo-head">
+          <span>Live Specimen · Dual-Axis Board</span>
+          <span class="live">Interactive</span>
+        </div>
+        <div class="demo-stage">
+          <div class="mq">
+            <div class="mq-bar">
+              <span>Sort by:</span>
+              <select disabled aria-label="Sort field"><option>Priority</option></select>
+              <button class="dir" aria-label="Ascending">↑</button>
+              <span class="spacer"></span>
+              <button class="new">Create Task</button>
+            </div>
+            <div id="mqBoard"></div>
+          </div>
+          <div class="mq-hint">Click a tier header to collapse it; tap any task to walk it up the <b>Urgent → Interesting</b> ladder — it re-sorts by priority within its tier.</div>
+        </div>
+        <figcaption>Fig. 04.2 · The <span class="hl">dual-axis</span> model — Tier (Slate / Stack / Seed) as collapsible sections, Priority (urgency) by colour. Rebuilt from the live React source — names &amp; palette verbatim.</figcaption>
+      </figure>
+
+      <ul>
+        <li><b>The Dual-Axis Model.</b> Tier (context / location) is held strictly separate from Priority (urgency / importance).</li>
+        <li><b>Visual Logic.</b> A color-coded six-level priority ladder (Urgent → Interesting) and Slate / Stack / Seed tiers for high-volume, at-a-glance triage.</li>
+        <li><b>Self-Healing Scripts.</b> Retry-resilient Apps Script logic, debugged with AI, that absorbs sync delays and parse failures.</li>
+      </ul>
+      <div class="module-tags">
+        <span class="tag ox">The Mighty Queue</span>
+        <span class="tag">Dual-Axis</span>
+        <span class="tag">Apps Script</span>
+        <span class="tag">6-Level Priority</span>
+        <span class="tag">Retry-Resilient</span>
+      </div>
+    </section>
+
+  </article>
+</div>
+
+<nav class="page-pager" data-screen-label="03 Pager">
+  <a href="track-logistics.html">
+    ← Track 03
+    <span class="label">Logistics</span>
+  </a>
+  <a href="track-human.html" class="right">
+    Next: Track 05 →
+    <span class="label">Human Touch</span>
+  </a>
+</nav>
+
+<footer class="footer" id="connect" data-screen-label="04 Connect">
+  <h2>Connect.</h2>
+  <div class="nodes">
+    <a href="mailto:tom@tomsherlock.space">Email</a>
+    <a href="tel:2013629836">(201) 362-9836</a>
+    <a href="https://www.linkedin.com/in/thomas-sherlock/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/Transcentive/" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://thewording.substack.com/" target="_blank" rel="noopener">Substack</a>
+  </div>
+  <div class="divider"></div>
+  <div class="colophon">
+    © 2026 Thomas J. Sherlock &nbsp;·&nbsp; Rutherford, NJ
+    <div class="seal">
+      <span class="silver">Architecting,</span>
+      <span class="gold">Defining,</span>
+      <span class="ox">Navigating.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* reveal-on-scroll */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+<!-- ============ 04.1 · NAM.LU.DIN keg lifecycle ============ -->
+<script>
+(function(){
+  const STATES = ['empty','sanitized','filled','reserved','sold','delivered'];
+  const COLOR = {empty:'--st-empty',sanitized:'--st-sanitized',filled:'--st-filled',
+                 reserved:'--st-reserved',sold:'--st-sold',delivered:'--st-delivered'};
+  const GLYPH = {empty:'𒁹',sanitized:'𒀀',filled:'𒁉',reserved:'𒁷',sold:'𒂠',delivered:'𒉆'};
+  const ACTION = {empty:'Sanitize',sanitized:'Fill batch',filled:'Reserve',
+                  reserved:'Mark sold',sold:'Deliver',delivered:'Drain → reset'};
+  const root = document.querySelector('.nam');
+  const cssv = k => getComputedStyle(root).getPropertyValue(COLOR[k]).trim();
+  let idx = 0;
+
+  function clock(){ return new Date().toTimeString().slice(0,5); }
+
+  function logRow(html, reject){
+    const log = document.getElementById('namLog');
+    const r = document.createElement('div');
+    r.className = 'row' + (reject ? ' reject' : '');
+    r.innerHTML = html;
+    log.insertBefore(r, log.firstChild);
+  }
+
+  function renderLadder(){
+    const L = document.getElementById('namLadder');
+    L.innerHTML = '';
+    STATES.forEach((s,i)=>{
+      const node = document.createElement('div');
+      node.className = 'nam-node' + (i<idx?' done':'') + (i===idx?' now':'');
+      node.style.setProperty('--nc', cssv(s));
+      node.innerHTML = '<div class="dot"></div><div class="lbl">'+s.slice(0,4)+'</div>';
+      L.appendChild(node);
+      if(i < STATES.length-1){
+        const seg = document.createElement('div');
+        seg.className = 'nam-seg' + (i<idx?' done':'');
+        L.appendChild(seg);
+      }
+    });
+  }
+
+  function renderKeg(){
+    const s = STATES[idx];
+    document.getElementById('namKeg').style.setProperty('--sc', cssv(s));
+    document.getElementById('namGlyph').textContent = GLYPH[s];
+    const pill = document.getElementById('namPill');
+    pill.textContent = s.toUpperCase();
+  }
+
+  function renderActions(){
+    const A = document.getElementById('namActions');
+    A.innerHTML = '';
+    const cur = STATES[idx];
+    const next = STATES[(idx+1) % STATES.length];
+
+    const adv = document.createElement('button');
+    adv.className = 'nam-btn';
+    adv.style.setProperty('--brn', cssv(next));
+    adv.textContent = ACTION[cur] + ' →';
+    adv.onclick = advance;
+    A.appendChild(adv);
+
+    // an invalid "skip" affordance — only when a skip target exists
+    if(idx < STATES.length - 2){
+      const skip = STATES[idx+2];
+      const bad = document.createElement('button');
+      bad.className = 'nam-btn ghost';
+      bad.textContent = 'Try: skip to ' + skip;
+      bad.onclick = () => reject(cur, skip);
+      A.appendChild(bad);
+    }
+  }
+
+  function advance(){
+    const from = STATES[idx];
+    idx = (idx + 1) % STATES.length;
+    const to = STATES[idx];
+    renderAll();
+    logRow('<span class="t">'+clock()+'</span> '+from+'<span class="arrow">→</span><b>'+to+'</b>');
+  }
+
+  function reject(from, to){
+    logRow('<span class="t">'+clock()+'</span> 400 · '+from+'<span class="arrow">⇸</span>'+to+' rejected — no skipping', true);
+  }
+
+  function renderAll(){ renderLadder(); renderKeg(); renderActions(); }
+
+  renderAll();
+  logRow('<span class="t">'+clock()+'</span> keg created<span class="arrow">→</span><b>empty</b>');
+})();
+</script>
+
+<!-- ============ 04.2 · Mighty Queue — faithful rebuild ============ -->
+<script>
+(function(){
+  // priority id 1 = most urgent → 6 = least; names & palette lifted verbatim from the repo
+  const PVAR  = ['--p1','--p2','--p3','--p4','--p5','--p6'];
+  const PNAME = ['Urgent','Necessary','Important','Nice-to-have','Relevant','Interesting'];
+  const PTXT  = ['#fff','#fff','#212529','#212529','#fff','#1a3a24'];
+  const TIERS = [
+    {id:1, cls:'t1', name:'Slate', open:true},
+    {id:2, cls:'t2', name:'Stack', open:false},
+    {id:3, cls:'t3', name:'Seed',  open:false}
+  ];
+  const root = document.querySelector('.mq');
+  const pc = i => getComputedStyle(root).getPropertyValue(PVAR[i]).trim();
+  const esc = s => s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+  // p is 1-based (1..6)
+  let tasks = [
+    {id:'a1f3c8d2', tier:1, p:1, t:'Ship keg QR endpoint',        who:'T. Sherlock', note:'Blocking the Brewery-1 rollout', over:true},
+    {id:'b7e0a934', tier:1, p:2, t:'Fix Apps Script retry loop',  who:'',            note:'JSON parse fails on cold sync'},
+    {id:'c4d9117a', tier:2, p:3, t:'Multi-tenant cellar isolation', who:'',          note:''},
+    {id:'d2a86f50', tier:2, p:4, t:'Flutter status sheet',        who:'',            note:''},
+    {id:'e9b34c7f', tier:3, p:5, t:'MidJourney label set',        who:'',            note:''},
+    {id:'f0c8a615', tier:3, p:6, t:'Substack field guide',        who:'',            note:''}
+  ];
+
+  function render(){
+    const B = document.getElementById('mqBoard');
+    B.innerHTML = '';
+    TIERS.forEach(tier=>{
+      const list = tasks.filter(t=>t.tier===tier.id).sort((a,b)=>a.p-b.p);
+      const sec = document.createElement('div');
+      sec.className = 'mq-tier ' + tier.cls + (tier.open ? ' open' : '');
+
+      const head = document.createElement('div');
+      head.className = 'mq-thead';
+      head.setAttribute('role','button');
+      head.setAttribute('tabindex','0');
+      head.innerHTML = '<h4><span class="caret">&#9654;</span>'+tier.name+'</h4>'+
+                       '<span class="cnt">'+list.length+' task'+(list.length===1?'':'s')+'</span>';
+      head.onclick = ()=>{ tier.open = !tier.open; render(); };
+      sec.appendChild(head);
+
+      const body = document.createElement('div');
+      body.className = 'mq-tbody';
+      if(!list.length){
+        body.innerHTML = '<div class="mq-empty">No tasks in this tier.</div>';
+      } else {
+        list.forEach(t=>{
+          const card = document.createElement('div');
+          card.className = 'mq-card';
+          card.setAttribute('role','button');
+          card.setAttribute('tabindex','0');
+          card.style.setProperty('--pc', pc(t.p-1));
+          card.style.setProperty('--ptxt', PTXT[t.p-1]);
+          const assignee = t.who || (t.tier===1 ? 'Unassigned' : '');
+          card.innerHTML =
+            '<div class="top"><span class="ttl">'+esc(t.t)+'</span>'+
+              '<span class="mq-badge">'+PNAME[t.p-1]+'</span></div>'+
+            '<div class="meta"><code>'+t.id+'</code>'+(assignee?'<span>'+assignee+'</span>':'')+'</div>'+
+            (t.note?'<p class="note">'+esc(t.note)+'</p>':'')+
+            (t.over?'<span class="over">Overdue</span>':'')+
+            '<span class="details">Details</span>';
+          // tap walks the task up the priority ladder (1→…→6→1), re-sorting its tier
+          card.onclick = ()=>{ t.p = (t.p % 6) + 1; render(); };
+          body.appendChild(card);
+        });
+      }
+      sec.appendChild(body);
+      B.appendChild(sec);
+    });
+  }
+
+  render();
+})();
+</script>
+
+</body>
+</html>

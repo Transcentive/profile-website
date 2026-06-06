@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Track 05 · Human Touch — Thomas J. Sherlock</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ===== Track 05 · Human Touch — page-scoped figures ===== */
+
+  .hum-fig {
+    margin: 32px 0;
+    border: 1px solid var(--gold);
+    background: rgba(255,255,255,0.35);
+  }
+  .hum-fig .fig-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 22px;
+    border-bottom: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+  }
+  .hum-fig .fig-head .ox { color: var(--oxblood); font-weight: 600; }
+  .hum-fig figcaption {
+    padding: 12px 22px 14px;
+    border-top: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+  }
+  .hum-fig figcaption .hl { color: var(--oxblood); }
+
+  /* --- Performance log (05.1) --- */
+  .playbill .pb-row {
+    display: grid;
+    grid-template-columns: 96px 1fr auto;
+    gap: 18px;
+    align-items: baseline;
+    padding: 11px 22px;
+    border-top: 1px solid var(--rule);
+  }
+  .playbill .pb-row:first-of-type { border-top: none; }
+  .playbill .pb-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    padding-top: 3px;
+  }
+  .playbill .pb-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(19px, 2.2vw, 24px);
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .playbill .pb-row.musical .pb-title { font-style: normal; font-weight: 600; }
+  .playbill .pb-row.featured .pb-title { color: var(--oxblood); }
+  .playbill .pb-genre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    white-space: nowrap;
+    padding-top: 4px;
+  }
+  .playbill .pb-genre.ox { color: var(--oxblood); }
+</style>
+</head>
+<body>
+
+<div id="site-nav"></div>
+<script src="nav.js"></script>
+
+<section class="page-hero" data-screen-label="01 Page Hero · Human Touch">
+  <div class="crumbs">
+    <a href="index.html">Curriculum</a>
+    <span class="sep">/</span>
+    <span>Track 05 · The Wu</span>
+  </div>
+  <span class="uppertrack ox">Track 05 // The Wu</span>
+  <h1>The <span class="em">Human</span> Touch.</h1>
+  <p class="deck">Where the work finally meets people. Twelve years on the community stage, volunteer architecture for civic institutions, and the facilitation of rooms full of strangers. Every other track is a structure built in private; this is the part done in public, with an audience — the place where rigor turns into rapport.</p>
+</section>
+
+<div class="page-body" data-screen-label="02 Body · Human Touch">
+
+  <aside class="toc">
+    <h5>§ Modules</h5>
+    <ul>
+      <li><a href="#m1">05.1 · The Stage as Interface</a></li>
+      <li><a href="#m2">05.2 · Civic Architecture</a></li>
+      <li><a href="#m3">05.3 · Facilitation &amp; Stewardship</a></li>
+    </ul>
+  </aside>
+
+  <article class="content">
+
+    <section id="m1" class="reveal">
+      <span class="uppertrack">Module 05.1</span>
+      <h2><span class="num">05.1</span>The Stage as Interface</h2>
+      <p>Community theatre is the real-time processing of a complex script for a live public — the stage functioning as a user interface, the performance as the delivery mechanism. Twelve years of it, mostly Shakespeare, with the occasional musical: the same editorial ear that tunes a sentence, applied to the rhythm and pacing of spoken dialogue. The dated log runs from <i>The Tempest</i> in 2012 to <i>Much Ado About Nothing</i> in 2020; the wider canon also includes <i>Romeo and Juliet</i>.</p>
+
+      <figure class="hum-fig playbill" aria-label="A chronological log of community theatre performances, 2012 to 2020">
+        <div class="fig-head">
+          <span>Specimen · Performance Log</span>
+          <span class="ox">2012 – 2020</span>
+        </div>
+        <div class="pb-row musical">
+          <span class="pb-date">2012 · May</span>
+          <span class="pb-title">Bye-Bye Birdie</span>
+          <span class="pb-genre ox">Musical</span>
+        </div>
+        <div class="pb-row">
+          <span class="pb-date">2012 · Sep</span>
+          <span class="pb-title">The Tempest</span>
+          <span class="pb-genre">Shakespeare</span>
+        </div>
+        <div class="pb-row">
+          <span class="pb-date">2013 · Sep</span>
+          <span class="pb-title">Twelfth Night</span>
+          <span class="pb-genre">Shakespeare</span>
+        </div>
+        <div class="pb-row">
+          <span class="pb-date">2014 · Sep</span>
+          <span class="pb-title">The Merry Wives of Windsor</span>
+          <span class="pb-genre">Shakespeare</span>
+        </div>
+        <div class="pb-row musical">
+          <span class="pb-date">2015 · Feb</span>
+          <span class="pb-title">Shrek</span>
+          <span class="pb-genre ox">Musical</span>
+        </div>
+        <div class="pb-row">
+          <span class="pb-date">2015 · Sep</span>
+          <span class="pb-title">The Taming of the Shrew</span>
+          <span class="pb-genre">Shakespeare</span>
+        </div>
+        <div class="pb-row musical">
+          <span class="pb-date">2016 · Feb</span>
+          <span class="pb-title">Mary Poppins</span>
+          <span class="pb-genre ox">Musical</span>
+        </div>
+        <div class="pb-row featured">
+          <span class="pb-date">2016 · Oct</span>
+          <span class="pb-title">Macbeth</span>
+          <span class="pb-genre ox">Shakespeare</span>
+        </div>
+        <div class="pb-row">
+          <span class="pb-date">2017 · Sep</span>
+          <span class="pb-title">As You Like It</span>
+          <span class="pb-genre">Shakespeare</span>
+        </div>
+        <div class="pb-row">
+          <span class="pb-date">2018 · Sep</span>
+          <span class="pb-title">Measure for Measure</span>
+          <span class="pb-genre">Shakespeare</span>
+        </div>
+        <div class="pb-row">
+          <span class="pb-date">2019 · Sep</span>
+          <span class="pb-title">Julius Caesar</span>
+          <span class="pb-genre">Shakespeare</span>
+        </div>
+        <div class="pb-row">
+          <span class="pb-date">2020 · Mar</span>
+          <span class="pb-title">Much Ado About Nothing</span>
+          <span class="pb-genre">Shakespeare</span>
+        </div>
+        <figcaption>Fig. 5.1 · Nine Shakespearean productions and three musicals — one <span class="hl">stage</span>, 2012–2020.</figcaption>
+      </figure>
+
+      <ul>
+        <li><b>The Shakespearean Run.</b> A near-annual September production — comedy, tragedy, and history in rotation.</li>
+        <li><b>Musical Register.</b> <i>Bye-Bye Birdie</i>, <i>Shrek</i>, and <i>Mary Poppins</i> — the resonance of presence over the logic of classicism.</li>
+        <li><b>The Editorial Ear.</b> Live performance as the source of an instinct for dialogue rhythm and pacing.</li>
+      </ul>
+      <div class="module-tags">
+        <span class="tag ox">Community Theatre</span>
+        <span class="tag">Shakespeare ×9</span>
+        <span class="tag">Musicals ×3</span>
+        <span class="tag">2012–2020</span>
+      </div>
+    </section>
+
+    <section id="m2" class="reveal">
+      <span class="uppertrack">Module 05.2</span>
+      <h2><span class="num">05.2</span>Civic Architecture</h2>
+      <p>Systems thinking turned on community life. The professional toolkit — Drupal, content modeling, version control — applied as volunteer work for the institutions of a single New Jersey town, where the real deliverable is connection rather than code. The recurring move is the same one: take something kept on paper and rebuild it as a living, accessible structure.</p>
+      <ul>
+        <li><b>Lincoln School PTA — Webmaster (2005–2011).</b> Launched and ran the PTA's first website; ported the parent/student directory from hardcopy to electronic form; moved to Creative-Commons imagery; built and administered the mailing list; managed a small volunteer team.</li>
+        <li><b>Rutherford Theatre Company (2013).</b> Migrated a proprietary site to Drupal and recreated hardcopy forms as printable electronic ones.</li>
+        <li><b>Broadway Bound (2015–2016).</b> Rebuilt a performing-arts studio's site around its three pillars — dance, music, theatre — with a course-registration commerce layer.</li>
+      </ul>
+      <div class="module-tags">
+        <span class="tag ox">Lincoln School PTA</span>
+        <span class="tag">Rutherford Theatre Co.</span>
+        <span class="tag">Broadway Bound</span>
+        <span class="tag">Creative Commons</span>
+      </div>
+    </section>
+
+    <section id="m3" class="reveal">
+      <span class="uppertrack">Module 05.3</span>
+      <h2><span class="num">05.3</span>Facilitation &amp; Stewardship</h2>
+      <p>The human touch as the terminal optimization layer — standing in front of a room and navigating its dynamics in real time. Facilitating sensitive sessions inside a rigid corporate structure, judging the rhetoric of students, and continuing to study the craft of the written word: the through-line is the careful calibration of a message to the people receiving it.</p>
+      <ul>
+        <li><b>JPMorganChase (STO, 2003–2006).</b> Facilitated two courses on diversity in the workplace and within the customer base — managing human dynamics in a highly structured environment.</li>
+        <li><b>Academic Decathlon, NJ (2018–2020).</b> Judge for Speech and Essay at the regional and state levels, evaluating rhetorical effectiveness and structural integrity.</li>
+        <li><b>Writers Studio, NY (2008).</b> Fiction and Poetry (Level 1) — keeping the writing instrument tuned.</li>
+      </ul>
+      <div class="module-tags">
+        <span class="tag ox">JPMC Diversity</span>
+        <span class="tag">Academic Decathlon</span>
+        <span class="tag">Writers Studio</span>
+        <span class="tag">Facilitation</span>
+      </div>
+    </section>
+
+  </article>
+</div>
+
+<nav class="page-pager" data-screen-label="03 Pager">
+  <a href="track-ai.html">
+    ← Track 04
+    <span class="label">AI</span>
+  </a>
+  <a href="index.html" class="right">
+    Back to Index →
+    <span class="label">Curriculum</span>
+  </a>
+</nav>
+
+<footer class="footer" id="connect" data-screen-label="04 Connect">
+  <h2>Connect.</h2>
+  <div class="nodes">
+    <a href="mailto:tom@tomsherlock.space">Email</a>
+    <a href="tel:2013629836">(201) 362-9836</a>
+    <a href="https://www.linkedin.com/in/thomas-sherlock/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/Transcentive/" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://thewording.substack.com/" target="_blank" rel="noopener">Substack</a>
+  </div>
+  <div class="divider"></div>
+  <div class="colophon">
+    © 2026 Thomas J. Sherlock &nbsp;·&nbsp; Rutherford, NJ
+    <div class="seal">
+      <span class="silver">Architecting,</span>
+      <span class="gold">Defining,</span>
+      <span class="ox">Navigating.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
