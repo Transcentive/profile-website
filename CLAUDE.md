@@ -16,7 +16,11 @@ There is nothing to build. Open `site/index.html` directly, or serve the folder 
 cd site && python3 -m http.server 8000   # then visit http://localhost:8000
 ```
 
-This is not a git repository.
+## Git / pushing
+
+The repo's remote is `Transcentive/profile-website` on GitHub.
+
+**Always use SSH first.** This machine's `~/.ssh/config` routes `github.com` through the `transcentive_gh` key, which authenticates as the **`Transcentive`** account — this is the identity with push access. The macOS keychain's HTTPS credential is a *different* account (`tjsherlock`) that has read-only access and will fail with `403`. So the `origin` remote must be the SSH URL (`git@github.com:Transcentive/profile-website.git`), not `https://`. If a push 403s, check the remote is SSH before anything else.
 
 ## Structure
 
