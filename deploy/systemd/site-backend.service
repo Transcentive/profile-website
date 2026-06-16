@@ -1,0 +1,28 @@
+# Install to /etc/systemd/system/site-backend.service, then:
+#   sudo systemctl daemon-reload && sudo systemctl enable --now site-backend
+[Unit]
+Description=Site Go backend (site-backend)
+After=network.target postgresql.service
+Wants=postgresql.service
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/site-backend
+EnvironmentFile=/etc/site-backend/site-backend.env
+ExecStart=/opt/site-backend/site-backend
+Restart=on-failure
+RestartSec=5
+
+# Hardening.
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+ReadWritePaths=/opt/site-backend
+
+[Install]
+WantedBy=multi-user.target
