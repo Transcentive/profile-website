@@ -2,6 +2,11 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## House style — READ FIRST
+
+Copy in this site follows `Style.md` at the repo root. Read it before writing or editing any prose.
+The hard rule: **no em-dashes (—), ever.** Recast the sentence with a comma, colon, parentheses, or period.
+
 ## What this is
 
 A personal CV / portfolio website for Thomas J. Sherlock, themed as a "Digital Scriptorium" — a parchment-and-ink editorial aesthetic blending ancient Sumerian/cuneiform motifs with a modern software résumé. It is **hand-authored static HTML/CSS/JS**: no build step, no framework, no package manager, no tests, no transpilation. Files are served as-is.
