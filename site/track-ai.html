@@ -547,6 +547,7 @@
       head.innerHTML = '<h4><span class="caret">&#9654;</span>'+tier.name+'</h4>'+
                        '<span class="cnt">'+list.length+' task'+(list.length===1?'':'s')+'</span>';
       head.onclick = ()=>{ tier.open = !tier.open; render(); };
+      head.onkeydown = (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); tier.open = !tier.open; render(); } };
       sec.appendChild(head);
 
       const body = document.createElement('div');
@@ -571,6 +572,7 @@
             '<span class="details">Details</span>';
           // tap walks the task up the priority ladder (1→…→6→1), re-sorting its tier
           card.onclick = ()=>{ t.p = (t.p % 6) + 1; render(); };
+          card.onkeydown = (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); t.p = (t.p % 6) + 1; render(); } };
           body.appendChild(card);
         });
       }
