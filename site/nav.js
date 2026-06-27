@@ -1,8 +1,9 @@
 /* =======================================================
-   Shared site navigation — single source of truth.
-   Edit the NAV_ITEMS array once; every page updates.
-   Each page includes:  <div id="site-nav"></div>
-                        <script src="nav.js"></script>
+   Shared site chrome: nav and footer, one single source of truth.
+   Edit NAV_ITEMS or FOOTER_HTML once; every page updates.
+   Each page includes, at the top:  <div id="site-nav"></div>
+   and at the bottom:               <div id="site-footer"></div>
+   with <script src="nav.js"></script> before </body>.
    ======================================================= */
 (function () {
   var NAV_ITEMS = [
@@ -37,5 +38,25 @@
     mount.outerHTML = html;
   } else {
     document.body.insertAdjacentHTML("afterbegin", html);
+  }
+
+  // ---- Footer: one definition, injected into #site-footer on every page ----
+  var FOOTER_HTML =
+    '<footer class="footer" id="connect" data-screen-label="Footer">' +
+      '<div class="colophon">' +
+        '© 2026 Thomas J. Sherlock &nbsp;·&nbsp; Rutherford, NJ &nbsp;·&nbsp; v.2026.05' +
+        '<div class="seal">' +
+          '<span class="silver">Architecting,</span> ' +
+          '<span class="gold">Exploring,</span> ' +
+          '<span class="ox">Navigating.</span>' +
+        '</div>' +
+      '</div>' +
+    '</footer>';
+
+  var fmount = document.getElementById("site-footer");
+  if (fmount) {
+    fmount.outerHTML = FOOTER_HTML;
+  } else {
+    document.body.insertAdjacentHTML("beforeend", FOOTER_HTML);
   }
 })();
