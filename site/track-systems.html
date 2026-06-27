@@ -8,6 +8,29 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<style>
+  /* ===== Track 01 · Systems · page-scoped figures ===== */
+  .page-body .content figure.diagram {
+    margin: 28px 0;
+    padding: 22px 20px 16px;
+    border: 1px solid var(--gold);
+    background: rgba(255,255,255,0.35);
+  }
+  .page-body .content figure.diagram svg { display: block; width: 100%; height: auto; }
+  .page-body .content figure.diagram figcaption {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    line-height: 1.6;
+    color: var(--gold);
+    text-align: center;
+  }
+  .page-body .content figure.diagram figcaption .hl { color: var(--oxblood); }
+</style>
 </head>
 <body>
 
@@ -63,7 +86,63 @@
         <li><b>Migration Logic</b>: Technical oversight of legacy-to-modern transitions, including Visual Basic to Java.</li>
         <li><b>Full-Lifecycle Development</b>: From Programmer Analyst to Technical Officer, managing the technical requirements and stability of global banking applications.</li>
       </ul>
-      <figure class="placeholder">[ Org diagram · STO scope · placeholder ]</figure>
+      <figure class="diagram" role="img" aria-label="Capability Maturity Model: five ascending process-maturity levels, Initial, Repeatable, Defined, Managed, and Optimizing. Building departmental standards corresponds to Level 3, Defined.">
+        <svg viewBox="0 0 720 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <marker id="cmmArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#8B7E66"/>
+            </marker>
+          </defs>
+
+          <text x="360" y="18" font-family="'JetBrains Mono', monospace" font-size="8" fill="#8B7E66" letter-spacing="1.6" text-anchor="middle">CAPABILITY MATURITY MODEL</text>
+
+          <!-- Ascending maturity guide -->
+          <polyline points="120,160 240,136 360,112 480,88 600,64" fill="none" stroke="#8B7E66" stroke-width="0.8" stroke-dasharray="3 3"/>
+          <line x1="600" y1="64" x2="638" y2="55" stroke="#8B7E66" stroke-width="0.8" stroke-dasharray="3 3" marker-end="url(#cmmArr)"/>
+          <text x="640" y="44" font-family="'JetBrains Mono', monospace" font-size="6" fill="#8B7E66" letter-spacing="0.4" text-anchor="end">increasing maturity</text>
+
+          <!-- Baseline -->
+          <line x1="54" y1="190" x2="666" y2="190" stroke="#8B7E66" stroke-width="1"/>
+
+          <!-- Levels -->
+          <g font-family="'JetBrains Mono', monospace">
+            <rect x="60"  y="160" width="120" height="30"  fill="rgba(255,255,255,0.4)"  stroke="#8B7E66"/>
+            <rect x="180" y="136" width="120" height="54"  fill="rgba(255,255,255,0.4)"  stroke="#8B7E66"/>
+            <rect x="300" y="112" width="120" height="78"  fill="rgba(255,255,255,0.55)" stroke="#800000" stroke-width="1.5"/>
+            <rect x="420" y="88"  width="120" height="102" fill="rgba(255,255,255,0.4)"  stroke="#8B7E66"/>
+            <rect x="540" y="64"  width="120" height="126" fill="rgba(255,255,255,0.4)"  stroke="#8B7E66"/>
+
+            <g font-size="9" font-weight="600" fill="#800000" text-anchor="middle">
+              <text x="120" y="178">01</text>
+              <text x="240" y="154">02</text>
+              <text x="360" y="130">03</text>
+              <text x="480" y="106">04</text>
+              <text x="600" y="82">05</text>
+            </g>
+
+            <!-- Level reached by the departmental-standards work -->
+            <circle cx="360" cy="112" r="3" fill="#800000"/>
+
+            <g font-size="7" fill="#2F2E2C" text-anchor="middle" letter-spacing="0.3">
+              <text x="120" y="204">INITIAL</text>
+              <text x="240" y="204">REPEATABLE</text>
+              <text x="360" y="204" fill="#800000" font-weight="600">DEFINED</text>
+              <text x="480" y="204">MANAGED</text>
+              <text x="600" y="204">OPTIMIZING</text>
+            </g>
+            <g font-size="5.5" fill="#6b665e" text-anchor="middle" letter-spacing="0.2">
+              <text x="120" y="214">ad hoc</text>
+              <text x="240" y="214">tracked</text>
+              <text x="360" y="214">standardized</text>
+              <text x="480" y="214">measured</text>
+              <text x="600" y="214">improving</text>
+            </g>
+          </g>
+
+          <text x="360" y="232" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#8B7E66" letter-spacing="1.6" text-anchor="middle">CMM · § 1.2</text>
+        </svg>
+        <figcaption>Fig. 1.2 · The five <span class="hl">capability maturity</span> levels. Building departmental standards and repeatable process is the climb to Level 3, <span class="hl">Defined</span>.</figcaption>
+      </figure>
       <div class="module-tags">
         <span class="tag ox">JPMC · STO</span>
         <span class="tag">VB → Java</span>
@@ -97,7 +176,81 @@
         <li><b>State Machine Modeling</b>. Six-state lifecycle: Empty → Sanitized → Filled → Reserved → Sold → Delivered.</li>
         <li><b>Language Progression</b>: PHP 8, JavaScript, SQL, Python.</li>
       </ul>
-      <figure class="placeholder">[ State machine diagram · placeholder ]</figure>
+      <figure class="diagram" role="img" aria-label="Six-state keg lifecycle state machine: Empty to Sanitized to Filled to Reserved to Sold to Delivered, with drainKeg resetting Delivered back to Empty and a cancel transition rolling Reserved back to Filled.">
+        <svg viewBox="0 0 720 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <marker id="smArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#8B7E66"/>
+            </marker>
+            <marker id="smArrOx" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#800000"/>
+            </marker>
+          </defs>
+
+          <text x="360" y="18" font-family="'JetBrains Mono', monospace" font-size="8" fill="#8B7E66" letter-spacing="1.8" text-anchor="middle">SIX-STATE LIFECYCLE</text>
+
+          <!-- State nodes -->
+          <g font-family="'JetBrains Mono', monospace">
+            <g>
+              <rect x="12" y="84" width="92" height="44" fill="rgba(255,255,255,0.4)" stroke="#8B7E66"/>
+              <text x="58" y="104" font-size="7" fill="#800000" font-weight="600" text-anchor="middle">01</text>
+              <text x="58" y="118" font-size="8.5" fill="#2F2E2C" text-anchor="middle">EMPTY</text>
+            </g>
+            <g>
+              <rect x="130" y="84" width="92" height="44" fill="rgba(255,255,255,0.4)" stroke="#8B7E66"/>
+              <text x="176" y="104" font-size="7" fill="#800000" font-weight="600" text-anchor="middle">02</text>
+              <text x="176" y="118" font-size="8.5" fill="#2F2E2C" text-anchor="middle">SANITIZED</text>
+            </g>
+            <g>
+              <rect x="248" y="84" width="92" height="44" fill="rgba(255,255,255,0.4)" stroke="#8B7E66"/>
+              <text x="294" y="104" font-size="7" fill="#800000" font-weight="600" text-anchor="middle">03</text>
+              <text x="294" y="118" font-size="8.5" fill="#2F2E2C" text-anchor="middle">FILLED</text>
+            </g>
+            <g>
+              <rect x="366" y="84" width="92" height="44" fill="rgba(255,255,255,0.4)" stroke="#8B7E66"/>
+              <text x="412" y="104" font-size="7" fill="#800000" font-weight="600" text-anchor="middle">04</text>
+              <text x="412" y="118" font-size="8.5" fill="#2F2E2C" text-anchor="middle">RESERVED</text>
+            </g>
+            <g>
+              <rect x="484" y="84" width="92" height="44" fill="rgba(255,255,255,0.4)" stroke="#8B7E66"/>
+              <text x="530" y="104" font-size="7" fill="#800000" font-weight="600" text-anchor="middle">05</text>
+              <text x="530" y="118" font-size="8.5" fill="#2F2E2C" text-anchor="middle">SOLD</text>
+            </g>
+            <g>
+              <rect x="602" y="84" width="92" height="44" fill="rgba(255,255,255,0.4)" stroke="#8B7E66"/>
+              <text x="648" y="104" font-size="7" fill="#800000" font-weight="600" text-anchor="middle">06</text>
+              <text x="648" y="118" font-size="8.5" fill="#2F2E2C" text-anchor="middle">DELIVERED</text>
+            </g>
+          </g>
+
+          <!-- Forward transitions -->
+          <g stroke="#8B7E66" stroke-width="1" fill="none">
+            <line x1="105" y1="106" x2="128" y2="106" marker-end="url(#smArr)"/>
+            <line x1="223" y1="106" x2="246" y2="106" marker-end="url(#smArr)"/>
+            <line x1="341" y1="106" x2="364" y2="106" marker-end="url(#smArr)"/>
+            <line x1="459" y1="106" x2="482" y2="106" marker-end="url(#smArr)"/>
+            <line x1="577" y1="106" x2="600" y2="106" marker-end="url(#smArr)"/>
+          </g>
+          <g font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#6b665e" text-anchor="middle" letter-spacing="0.3">
+            <text x="117" y="75">sanitize()</text>
+            <text x="235" y="75">fill(batch)</text>
+            <text x="353" y="75">reserve()</text>
+            <text x="471" y="75">prepForSale()</text>
+            <text x="589" y="75">deliver()</text>
+          </g>
+
+          <!-- Cancel: Reserved back to Filled -->
+          <path d="M 412 84 C 412 56, 294 56, 294 84" stroke="#6b665e" stroke-width="0.8" fill="none" stroke-dasharray="2 2" marker-end="url(#smArr)"/>
+          <text x="353" y="50" font-family="'JetBrains Mono', monospace" font-size="6" fill="#6b665e" letter-spacing="0.4" text-anchor="middle">cancel</text>
+
+          <!-- Drain cycle: Delivered back to Empty -->
+          <path d="M 648 128 C 648 196, 58 196, 58 128" stroke="#800000" stroke-width="1" fill="none" stroke-dasharray="3 2" marker-end="url(#smArrOx)"/>
+          <text x="353" y="190" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#800000" letter-spacing="0.4" text-anchor="middle">drainKeg() · cycle</text>
+
+          <text x="360" y="230" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#8B7E66" letter-spacing="1.6" text-anchor="middle">KAŠ.DIN.NAM · § 1.4</text>
+        </svg>
+        <figcaption>Fig. 1.4 · The keg's <span class="hl">enforced</span> six-state lifecycle: forward only, with <span class="hl">drainKeg()</span> resetting the cycle and cancel rolling Reserved back to Filled.</figcaption>
+      </figure>
       <div class="module-tags">
         <span class="tag">Flutter · Dart</span>
         <span class="tag">Go</span>
