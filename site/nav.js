@@ -43,6 +43,13 @@
   // ---- Footer: one definition, injected into #site-footer on every page ----
   var FOOTER_HTML =
     '<footer class="footer" id="connect" data-screen-label="Footer">' +
+      '<div class="nodes">' +
+        '<a href="https://www.linkedin.com/in/thomas-sherlock/" target="_blank" rel="noopener">LinkedIn</a>' +
+        '<a href="https://github.com/transcentive" target="_blank" rel="noopener">GitHub</a>' +
+        '<a href="https://thewording.substack.com/" target="_blank" rel="noopener">Substack</a>' +
+        '<a href="https://sherlockeditorial.com/" target="_blank" rel="noopener">SherlockEditorial</a>' +
+      '</div>' +
+      '<div class="divider"></div>' +
       '<div class="colophon">' +
         '© 2026 Thomas J. Sherlock &nbsp;·&nbsp; Rutherford, NJ &nbsp;·&nbsp; v.2026.05' +
         '<div class="seal">' +
