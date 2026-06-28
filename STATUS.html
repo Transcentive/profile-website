@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Status Report · profile-website</title>
+<style>
+  :root {
+    --parchment: #FDF9F0; --ink: #2F2E2C; --ink-soft: #6b665e;
+    --oxblood: #800000; --gold: #8B7E66; --rule: rgba(139,126,102,0.30);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--parchment); color: var(--ink);
+    font-family: Georgia, 'Times New Roman', serif; line-height: 1.6;
+    padding: 64px 24px;
+  }
+  main { max-width: 820px; margin: 0 auto; }
+  h1 { font-size: 38px; margin: 0 0 6px; color: var(--ink); font-weight: 700; }
+  .sub {
+    font-family: ui-monospace, 'JetBrains Mono', monospace; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.18em; color: var(--gold);
+    margin-bottom: 28px;
+  }
+  .badge {
+    display: inline-block; background: var(--oxblood); color: var(--parchment);
+    font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.1em;
+    padding: 4px 12px; border-radius: 999px; margin-bottom: 28px;
+  }
+  h2 {
+    font-size: 22px; margin: 36px 0 12px; color: var(--oxblood);
+    border-bottom: 1px solid var(--rule); padding-bottom: 6px;
+  }
+  h3 {
+    font-size: 15px; margin: 22px 0 6px; color: var(--ink);
+    font-family: ui-monospace, monospace; text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  p, li { font-size: 16px; }
+  ul { margin: 6px 0 6px 0; padding-left: 22px; }
+  li { margin: 4px 0; }
+  code {
+    font-family: ui-monospace, 'JetBrains Mono', monospace; font-size: 13.5px;
+    background: rgba(139,126,102,0.12); padding: 1px 5px; border-radius: 3px;
+  }
+  strong { color: var(--ink); }
+  .meta-row { font-size: 14px; color: var(--ink-soft); margin: 2px 0; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Status Report</h1>
+  <div class="sub">profile-website · Digital Repertoire</div>
+
+  <span class="badge">main @ bf17f75 · working tree clean · all pages 200</span>
+
+  <div class="meta-row"><strong>Date:</strong> 2026-06-28</div>
+  <div class="meta-row"><strong>Branch:</strong> main (pushed to Transcentive/profile-website)</div>
+  <div class="meta-row"><strong>Working tree:</strong> clean (only <code>.project.md</code> untracked, intentionally)</div>
+
+  <h2>What this is</h2>
+  <p>Thomas J. Sherlock's CV / portfolio site, "Digital Repertoire", a hand-authored
+  static HTML/CSS/JS site (no build step). Six pages: <code>index.html</code> plus five
+  track pages (Systems, Linguistics, Logistics, AI, Human Touch), one shared
+  <code>styles.css</code>, and shared chrome (nav and footer) injected from
+  <code>nav.js</code>.</p>
+
+  <h2>Done this session</h2>
+
+  <h3>Design import</h3>
+  <ul>
+    <li>Imported <code>index.html</code> and <code>track-ai.html</code> from the Claude Design project.</li>
+    <li>index refresh: rebrand "Defining" to "Exploring" (hero and seal), real CV PDF download link, reconciled the matching <code>styles.css</code> rules (cv-strip <code>h3</code>, <code>.connect-line</code>, footer spacing).</li>
+    <li>track-ai: added keyboard handlers to the Mighty Queue demo (Enter/Space on the focusable tier headers and cards).</li>
+  </ul>
+
+  <h3>Rebrand cleanup (now consistent site-wide)</h3>
+  <ul>
+    <li>"scriptorium" to "repertoire", "Kinetic" to "Logistic", "Defining" to "Exploring".</li>
+    <li>Removed the stray untracked <code>site/site/</code> duplicate directory.</li>
+  </ul>
+
+  <h3>House style</h3>
+  <ul>
+    <li>Added <code>Style.md</code> (em-dashes are not allowed; recast per context) and referenced it from <code>CLAUDE.md</code>.</li>
+    <li>Purged all 84 em-dashes across the six pages and the stylesheet, recast as comma / colon / parentheses / period / semicolon / middle dot. En-dash kept only for true ranges. Reported in <code>em-dash-purge-report.md</code> / <code>.html</code>.</li>
+  </ul>
+
+  <h3>Footer</h3>
+  <ul>
+    <li>Consolidated six drifting inline footers into one definition in <code>nav.js</code>, injected on every page. Content: LinkedIn / GitHub / Substack / Sherlock Editorial, then the colophon "© 2026 Thomas J. Sherlock · Rutherford, NJ · v.2026.05" and the seal "Architecting, Exploring, Navigating."</li>
+    <li>Fixed a rendering bug: inject on <code>DOMContentLoaded</code> so the footer lands at the page bottom; cache-bust the <code>nav.js</code> include (<code>?v=3</code>) so browsers stop serving the stale script.</li>
+  </ul>
+
+  <h3>Track-systems diagrams (replaced two placeholders with real SVGs)</h3>
+  <ul>
+    <li>1.2 Enterprise Engineering &amp; Standards: CMM maturity staircase, Level 3 "Defined" highlighted to mark the departmental-standards work.</li>
+    <li>1.4 Modern Stack &amp; Reactive Systems: six-state keg lifecycle state machine.</li>
+  </ul>
+
+  <h3>Copy edits</h3>
+  <ul>
+    <li>Linguistics: Italian/Portuguese reframed as "specialized text-based command".</li>
+    <li>Logistics: "Testing the waters in Texas commercial real estate".</li>
+  </ul>
+
+  <h2>Current state</h2>
+  <ul>
+    <li>All six pages serve HTTP 200 from the local server (<code>cd site &amp;&amp; python3 -m http.server 8000</code>).</li>
+    <li>Zero em-dashes anywhere.</li>
+    <li>One consolidated footer, rendering at the bottom of every page.</li>
+    <li>Everything committed and pushed.</li>
+  </ul>
+
+  <h2>Open / not done</h2>
+  <ul>
+    <li>1.2 originally had an "Org diagram" placeholder; replaced with the CMM model instead (org chart added no real information for that section).</li>
+    <li><code>.project.md</code> remains untracked.</li>
+    <li>No outstanding requested changes.</li>
+  </ul>
+</main>
+</body>
+</html>
