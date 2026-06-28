@@ -47,11 +47,11 @@
         '<a href="https://www.linkedin.com/in/thomas-sherlock/" target="_blank" rel="noopener">LinkedIn</a>' +
         '<a href="https://github.com/transcentive" target="_blank" rel="noopener">GitHub</a>' +
         '<a href="https://thewording.substack.com/" target="_blank" rel="noopener">Substack</a>' +
-        '<a href="https://sherlockeditorial.com/" target="_blank" rel="noopener">SherlockEditorial</a>' +
+        '<a href="https://sherlockeditorial.com/" target="_blank" rel="noopener">Sherlock Editorial</a>' +
       '</div>' +
       '<div class="divider"></div>' +
       '<div class="colophon">' +
-        '© 2026 Thomas J. Sherlock &nbsp;·&nbsp; Rutherford, NJ &nbsp;·&nbsp; v.2026.05' +
+        '© 2026 Thomas J. Sherlock &nbsp;·&nbsp; Rutherford, NJ &nbsp;·&nbsp; v.2026.05&nbsp;' +
         '<div class="seal">' +
           '<span class="silver">Architecting,</span> ' +
           '<span class="gold">Exploring,</span> ' +
@@ -60,10 +60,20 @@
       '</div>' +
     '</footer>';
 
-  var fmount = document.getElementById("site-footer");
-  if (fmount) {
-    fmount.outerHTML = FOOTER_HTML;
+  // The #site-footer mount sits at the bottom of the page, so it may not be
+  // parsed yet when this script runs near the top. Wait for the DOM if needed,
+  // then replace the mount in place so the footer lands at the page bottom.
+  function injectFooter() {
+    var fmount = document.getElementById("site-footer");
+    if (fmount) {
+      fmount.outerHTML = FOOTER_HTML;
+    } else {
+      document.body.insertAdjacentHTML("beforeend", FOOTER_HTML);
+    }
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", injectFooter);
   } else {
-    document.body.insertAdjacentHTML("beforeend", FOOTER_HTML);
+    injectFooter();
   }
 })();
