@@ -24,7 +24,21 @@ The backend was scaffolded with the `site-backend` skill (`~/.claude/skills/site
 cd backend && set -a && source .env && set +a && make run
 ```
 
-On the droplet (`68.183.59.71`, Ubuntu 22.04) it runs as the `site-backend` systemd unit, as `www-data` on `127.0.0.1:8080`, from the binary in `/opt/site-backend/`, against PostgreSQL 14 (database `site`). The droplet's source copy is still at `/opt/profile-website-04/backend`; moving deploys to this repository is a change to the droplet and waits for the owner's word.
+On the droplet (`68.183.59.71`, Ubuntu 22.04) it runs as the `site-backend` systemd unit, as `www-data` on `127.0.0.1:8080`, from the binary in `/opt/site-backend/`, against PostgreSQL 14 (database `site`).
+
+## Deploying
+
+Deploys come from this repository (since November 18, 2026). From the repo root on the Mac:
+
+```sh
+# pages
+rsync -rlt --exclude '.DS_Store' site/ droplet:/var/www/tomsherlock.space/
+# backend: copy the source, build on the droplet, install, restart
+rsync -rlt --exclude '.git/' --exclude '.env' --exclude '*.env' --exclude '.DS_Store' --exclude '.claude/' --exclude 'backend/bin/' ./ droplet:/opt/profile-website/
+ssh droplet 'cd /opt/profile-website/backend && go build -o /tmp/site-backend.new ./cmd/server && install -o www-data -g www-data -m 755 /tmp/site-backend.new /opt/site-backend/site-backend && systemctl restart site-backend'
+```
+
+Then check https://tomsherlock.space/healthz and /readyz. The backend's settings are in `/etc/site-backend/site-backend.env` on the droplet, never in this repository. `/opt/profile-website-04` on the droplet is the old source copy and is no longer used.
 
 ## Running / previewing
 
