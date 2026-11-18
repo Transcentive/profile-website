@@ -33,15 +33,16 @@ A useful, accessible, aesthetic, navigable, comprehensible website.
 ## Scaffolding
 
 The **`site-backend`** skill provides the scaffolding, tools, and conventions for
-the backend. It's a personal (global) skill installed at
-`~/.claude/skills/site-backend/` — reusable across projects, not committed to this
-repo. It bundles a verified Go template, a `scaffold_backend.py` generator, a
+the backend. It lives in this repository at `.claude/skills/site-backend/`, with
+its companions `provision-db` and `backend-stack`, so it loads only when working
+on this site (moved from `~/.claude/skills/` on November 18, 2026, because its
+stack, chi and sqlc, conflicts with The Mighty Queue and PhoenixEvent). It bundles a verified Go template, a `scaffold_backend.py` generator, a
 `new_subhost.py` Nginx-config generator, and references covering architecture, the
 pgx+sqlc database workflow, subhosting, and DigitalOcean deployment. Run it from
 the repo root to create `backend/` here:
 
 ```bash
-python3 ~/.claude/skills/site-backend/scripts/scaffold_backend.py
+python3 .claude/skills/site-backend/scripts/scaffold_backend.py
 ```
 
 The module path defaults to `tomsherlock.space/backend` (override with `--module`).

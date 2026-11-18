@@ -18,7 +18,7 @@ This one repository supplies the whole live site at https://tomsherlock.space:
 
 ## Backend
 
-The backend was scaffolded with the `site-backend` skill (`~/.claude/skills/site-backend/`); read its `references/architecture.md` before editing. Run it locally with:
+The backend was scaffolded with the `site-backend` skill, which lives in this repository with `provision-db` and `backend-stack` (`.claude/skills/`); read its `references/architecture.md` before editing. Run it locally with:
 
 ```sh
 cd backend && set -a && source .env && set +a && make run
