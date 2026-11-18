@@ -1,5 +1,8 @@
 # Deployment: Ubuntu droplet on DigitalOcean
 
+For tomsherlock.space, the Deploying section of `CLAUDE.md` governs: its paths
+and commands replace the general ones below.
+
 Target: a single Ubuntu droplet running Nginx (edge), the Go backend, PostgreSQL,
 and any sub-app services — all behind systemd.
 

@@ -42,7 +42,7 @@ Then check https://tomsherlock.space/healthz and /readyz. The backend's settings
 
 ## Running / previewing
 
-There is nothing to build. Open `site/index.html` directly, or serve the folder over HTTP (needed so `nav.js` and relative asset paths resolve cleanly):
+The pages need no build. Open `site/index.html` directly, or serve the folder over HTTP (needed so `nav.js` and relative asset paths resolve cleanly):
 
 ```sh
 cd site && python3 -m http.server 8000   # then visit http://localhost:8000
