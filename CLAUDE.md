@@ -38,7 +38,7 @@ rsync -rlt --exclude '.git/' --exclude '.env' --exclude '*.env' --exclude '.DS_S
 ssh droplet 'cd /opt/profile-website/backend && go build -o /tmp/site-backend.new ./cmd/server && install -o www-data -g www-data -m 755 /tmp/site-backend.new /opt/site-backend/site-backend && systemctl restart site-backend'
 ```
 
-Then check https://tomsherlock.space/healthz and /readyz. The backend's settings are in `/etc/site-backend/site-backend.env` on the droplet, never in this repository. `/opt/profile-website-04` on the droplet is the old source copy and is no longer used.
+Then check https://tomsherlock.space/healthz and /readyz. The backend's settings are in `/etc/site-backend/site-backend.env` on the droplet, never in this repository. The old source copy, `/opt/profile-website-04`, was moved to `/root/archive/profile-website-04-archived-2026-11-18` on the droplet, to be deleted after December 18, 2026.
 
 ## Running / previewing
 
