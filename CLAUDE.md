@@ -9,7 +9,7 @@ The hard rule: **no em-dashes (—), ever.** Recast the sentence with a comma, c
 
 ## What this is
 
-A personal CV / portfolio website for Thomas J. Sherlock, themed as a "Digital Scriptorium" — a parchment-and-ink editorial aesthetic blending ancient Sumerian/cuneiform motifs with a modern software résumé. It is **hand-authored static HTML/CSS/JS**: no build step, no framework, no package manager, no tests, no transpilation. Files are served as-is.
+A personal CV / portfolio website for Thomas J. Sherlock, themed as a "Digital Scriptorium" — a parchment-and-ink editorial aesthetic blending ancient Sumerian/cuneiform motifs with a modern software résumé. Its pages in `site/` are **hand-authored static HTML/CSS/JS**: no build step, no framework, no package manager, no tests, no transpilation. They are served as-is. The Go backend in `backend/` is built separately (see Backend).
 
 This one repository supplies the whole live site at https://tomsherlock.space:
 
