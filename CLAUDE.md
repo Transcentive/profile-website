@@ -11,7 +11,20 @@ The hard rule: **no em-dashes (—), ever.** Recast the sentence with a comma, c
 
 A personal CV / portfolio website for Thomas J. Sherlock, themed as a "Digital Scriptorium" — a parchment-and-ink editorial aesthetic blending ancient Sumerian/cuneiform motifs with a modern software résumé. It is **hand-authored static HTML/CSS/JS**: no build step, no framework, no package manager, no tests, no transpilation. Files are served as-is.
 
-All site files live under `site/`.
+This one repository supplies the whole live site at https://tomsherlock.space:
+
+- `site/` holds the pages, served by nginx from `/var/www/tomsherlock.space` on the droplet.
+- `backend/` holds the Go backend (chi, pgx with sqlc, PostgreSQL), behind nginx at `/api/`, `/admin/`, `/healthz` and `/readyz`. It came from `Transcentive/profile-website-04` by `git subtree` on November 18, 2026; that repository is superseded.
+
+## Backend
+
+The backend was scaffolded with the `site-backend` skill (`~/.claude/skills/site-backend/`); read its `references/architecture.md` before editing. Run it locally with:
+
+```sh
+cd backend && set -a && source .env && set +a && make run
+```
+
+On the droplet (`68.183.59.71`, Ubuntu 22.04) it runs as the `site-backend` systemd unit, as `www-data` on `127.0.0.1:8080`, from the binary in `/opt/site-backend/`, against PostgreSQL 14 (database `site`). The droplet's source copy is still at `/opt/profile-website-04/backend`; moving deploys to this repository is a change to the droplet and waits for the owner's word.
 
 ## Running / previewing
 
